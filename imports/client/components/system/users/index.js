@@ -1,35 +1,18 @@
-const tracker = props => {
-  const subscribe = Meteor.subscribe('system.users').ready()
+import ActionComponent from './action'
+import TableComponent from './table'
+import FormComponent from './form'
 
-  if (! subscribe)
-    return { subscribe }
+export default class ViewComponent extends Component {
+  state = {
+    openForm: false
+  }
 
-  const users = Users.find({ isAdmin: { $ne: true } }).fetch()
-
-  return { subscribe, users }
+  render() {
+    const { openForm } = this.state
+    return <div>
+      <ActionComponent that={this} />
+      <TableComponent that={this} />
+      {openForm && <FormComponent that={this} />}
+    </div>
+  }
 }
-
-const component = ({ subscribe, users }) => {
-  if (! subscribe)
-    return <LoadingView />
-
-  if (! users.length)
-    return <EmptyView />
-
-  return <div>
-    <table>
-      <thead>
-        <tr>
-          <th>username</th>
-        </tr>
-      </thead>
-      <tbody>
-        {users.map(({ username }) => <tr>
-          <td>{username}</td>
-        </tr>)}
-      </tbody>
-    </table>
-  </div>
-}
-
-export default withTracker(tracker)(component)

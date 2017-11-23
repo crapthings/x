@@ -8,7 +8,7 @@ const TableAction = ({ collection, that }) => <div>
 const tracker = ({ _id }) => {
   const subscribe = Meteor.subscribe('collections.view', { _id }).ready()
   if (subscribe) {
-    const collection = _Collections.findOne(_id)
+    const collection = Collections.findOne(_id)
     const dataset = Mongo.Collection.get(_id).find().fetch()
     return { subscribe, collection, dataset }
   }

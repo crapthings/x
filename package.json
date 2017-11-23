@@ -6,9 +6,12 @@
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
+    "bcrypt": "^1.0.3",
     "faker": "^4.1.0",
     "form2js": "^1.0.0",
     "lodash": "^4.17.4",
+    "material-ui": "^1.0.0-beta.21",
+    "material-ui-icons": "^1.0.0-beta.17",
     "meteor-node-stubs": "^0.3.2",
     "moment": "^2.19.2",
     "react": "^16.1.1",

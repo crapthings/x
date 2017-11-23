@@ -37,15 +37,11 @@ class ItemView extends Component {
 }
 
 const tracker = ({ _id }) => {
-  const subscribe = Meteor.subscribe('collection', { _id }).ready()
-  const collection = subscribe ? _Collections.findOne(_id) : undefined
-  return { collection, subscribe }
+  const collection = Collections.findOne(_id)
+  return { collection }
 }
 
-const component = ({ collection, subscribe }) => {
-  if (! subscribe)
-    return <div>loading</div>
-
+const component = ({ collection }) => {
   return collection ? <div>
     <ItemView collection={collection} />
   </div> : <div>empty</div>

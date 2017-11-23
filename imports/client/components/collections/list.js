@@ -1,8 +1,7 @@
 import { withTracker } from 'meteor/react-meteor-data'
 
 const tracker = ({ _id }) => {
-  const subscribe = Meteor.subscribe('collections')
-  const collections = subscribe.ready() ? _Collections.find().fetch() : []
+  const collections = Collections.find().fetch()
   return { collections }
 }
 

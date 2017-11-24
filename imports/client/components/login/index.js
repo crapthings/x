@@ -1,6 +1,5 @@
-export default () => <div>
-
-  <form onSubmit={submit}>
+export default () => {
+  return <form onSubmit={submit}>
     <div>
       <input type='text' name='username' required />
     </div>
@@ -13,8 +12,8 @@ export default () => <div>
       <input type='submit' />
     </div>
   </form>
+}
 
-</div>
 
 function submit (evt) {
   evt.preventDefault()

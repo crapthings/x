@@ -1,5 +1,6 @@
-import LoginLayout from '../login/layout'
+import LoginLayout from './login'
 import LoginView from '../login'
+import MainLayout from './main'
 
 const tracker = ({ children }) => {
   const currentUserId = Meteor.userId()
@@ -11,7 +12,8 @@ const tracker = ({ children }) => {
     return { currentUserId, isCurrentUserLoggingIn }
 
   const ready = Meteor.subscribe('login.user').ready()
-  if (! ready) return { currentUserId, isCurrentUserLoggingIn, ready }
+  if (! ready)
+    return { currentUserId, isCurrentUserLoggingIn, ready }
 
   const currentUser = Meteor.user()
   const collections = Collections.find().fetch()
@@ -21,10 +23,16 @@ const tracker = ({ children }) => {
       new Mongo.Collection(collection._id)
   })
 
-  return { currentUserId, isCurrentUserLoggingIn, ready, currentUser, collections, children }
+  return {
+    currentUserId, isCurrentUserLoggingIn, ready,
+    currentUser, collections, children,
+  }
 }
 
-const component = ({ currentUserId, isCurrentUserLoggingIn, ready, currentUser, collections, children }) => {
+const component = ({
+  currentUserId, isCurrentUserLoggingIn, ready,
+  currentUser, collections, children,
+}) => {
   if (! currentUserId)
     return <LoginLayout children={LoginView} />
 
@@ -34,11 +42,8 @@ const component = ({ currentUserId, isCurrentUserLoggingIn, ready, currentUser, 
   if (! ready)
     return <LoadingView text='init' />
 
-  const { isAdmin } = currentUser
+  return <MainLayout children={children} currentUser={currentUser} collections={collections} />
 
-  return <div>
-    {children({ isAdmin })}
-  </div>
 }
 
 export default withTracker(tracker)(component)

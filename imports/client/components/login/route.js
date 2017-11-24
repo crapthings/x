@@ -1,4 +1,4 @@
-import LoginLayout from './layout'
+import LoginLayout from '../layout/login'
 import LoginView from './'
 
 FlowRouter.route('/login', {

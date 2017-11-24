@@ -1,7 +1,20 @@
-const Nav = () => <ul>
-  <li><a href='/'>home</a></li>
-  <li><a href='/system/users'>users</a></li>
-  <li><a onClick={() => Meteor.logout()} href='/'>logout</a></li>
+const Nav = () => <ul className='menu'>
+  <li className='divider' data-content='LINKS'>
+  </li>
+  <li className='menu-item'>
+    <a href='#'>
+      <i className='icon icon-link'></i> Slack
+    </a>
+  </li>
+  <li className='divider'></li>
+  <li className='menu-item'>
+    <div className='menu-badge'>
+      <label className='label label-primary'>2</label>
+    </div>
+    <a href='#'>
+      <i className='icon icon-link'></i> Settings
+    </a>
+  </li>
 </ul>
 
 export default ({ children }) => <div>

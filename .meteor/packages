@@ -24,3 +24,5 @@ random
 dburles:mongo-collection-instances
 stylus
 accounts-password
+matb33:collection-hooks
+meteorhacks:unblock

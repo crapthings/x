@@ -8,7 +8,28 @@ const Who = ({ currentUser }) => {
   </div>
 }
 
-const Menu = ({ collections }) => {
+const Menu = ({ currentUser, collections }) => {
+  const { isAdmin } = currentUser
+
+  if (isAdmin)
+    return <ul className='menu'>
+      <li className='menu-item'>
+        <a href='/'>首页</a>
+      </li>
+
+      <li className='divider' />
+
+      <li className='menu-item'>
+        <a href='/roles'>角色</a>
+      </li>
+
+      <li className='divider' />
+
+      <li className='menu-item'>
+        <a href='/' onClick={() => Meteor.logout()}>注销</a>
+      </li>
+    </ul>
+
   return <ul className='menu'>
     <li className='menu-item'>
       <a href='/'>首页</a>
@@ -51,6 +72,7 @@ export default ({ children, currentUser, collections }) => {
           <a href='#' className='btn btn-link'>GitHub</a>
         </section>
       </header>
+      {children()}
     </div>
   </div>
 }

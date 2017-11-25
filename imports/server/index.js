@@ -1,5 +1,6 @@
 import './config'
-import './publications'
+import './hooks'
 import './methods'
+import './publications'
 import './init'
 import './startup'

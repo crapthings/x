@@ -4,46 +4,51 @@ import MainLayout from './main'
 
 const tracker = ({ children }) => {
   const currentUserId = Meteor.userId()
-  if (! currentUserId)
+  if (!currentUserId)
     return { currentUserId }
 
   const isCurrentUserLoggingIn = Meteor.loggingIn()
   if (isCurrentUserLoggingIn)
     return { currentUserId, isCurrentUserLoggingIn }
 
-  const ready = Meteor.subscribe('login.user').ready()
-  if (! ready)
+  const ready = Meteor.subscribe('core.collections').ready()
+  if (!ready)
     return { currentUserId, isCurrentUserLoggingIn, ready }
 
   const currentUser = Meteor.user()
-  const collections = Collections.find().fetch()
+  const roles = Roles.find().fetch()
+  const features = Features.find().fetch()
 
-  _.each(collections, collection => {
-    if (! Mongo.Collection.get(collection._id))
-      new Mongo.Collection(collection._id)
+  _.each(features, ({ _id }) => {
+    if (!Mongo.Collection.get(_id))
+      new Mongo.Collection(_id)
   })
 
   return {
     currentUserId, isCurrentUserLoggingIn, ready,
-    currentUser, collections, children,
+    currentUser, roles, features, children,
   }
 }
 
 const component = ({
   currentUserId, isCurrentUserLoggingIn, ready,
-  currentUser, collections, children,
+  currentUser, roles, features, children,
 }) => {
-  if (! currentUserId)
+  if (!currentUserId)
     return <LoginLayout children={LoginView} />
 
   if (isCurrentUserLoggingIn)
     return <LoadingView text='logging in' />
 
-  if (! ready)
+  if (!ready)
     return <LoadingView text='init' />
 
-  return <MainLayout children={children} currentUser={currentUser} collections={collections} />
-
+  return <MainLayout
+    currentUser={currentUser}
+    roles={roles}
+    features={features}
+    children={children}
+  />
 }
 
 export default withTracker(tracker)(component)

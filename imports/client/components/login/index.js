@@ -1,19 +1,24 @@
 export default () => {
-  return <form onSubmit={submit}>
-    <div>
-      <input type='text' name='username' required />
-    </div>
+  return <div>
+    <form onSubmit={submit}>
 
-    <div>
-      <input type='password' name='password' required />
-    </div>
+      <div className='form-group'>
+        <label className='form-label' htmlFor='username'>账号</label>
+        <input className='form-input' type='text' name='username' id='username' placeholder='邮箱账号或用户名' autoComplete='new-password' />
+      </div>
 
-    <div>
-      <input type='submit' />
-    </div>
-  </form>
+      <div className='form-group'>
+        <label className='form-label' htmlFor='password'>密码</label>
+        <input className='form-input' type='password' name='password' id='password' placeholder='密码' autoComplete='new-password' />
+      </div>
+
+      <div className='form-group'>
+        <button className='btn btn-primary'>登录</button>
+      </div>
+
+    </form>
+  </div>
 }
-
 
 function submit (evt) {
   evt.preventDefault()

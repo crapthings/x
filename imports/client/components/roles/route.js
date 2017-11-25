@@ -1,9 +1,10 @@
-import Layout from '../layout'
+import AppView from '../layout'
+import RolesView from './'
 
 FlowRouter.route('/roles', {
   action() {
-    mount(Layout, {
-      children: () => <div>roles</div>
+    mount(AppView, {
+      children: props => <RolesView { ...props } />
     })
   }
 })

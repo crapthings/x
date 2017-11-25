@@ -1,27 +1,27 @@
-Meteor.methods({
+methods({
 
-  'create.collection'({ name, fields = [], _fields = {} }) {
-    return Collections.insert({ name, fields, _fields })
+  'create.features'({ name, fields = [], _fields = {} }) {
+    return Features.insert({ name, fields, _fields })
   },
 
-  'update.collection'(_id, values = {}) {
-    Collections.update(_id, { $set: values })
+  'update.features'(_id, values = {}) {
+    Features.update(_id, { $set: values })
   },
 
-  'delete.collection'(_id) {
-    Collections.remove(_id)
+  'delete.features'(_id) {
+    Features.remove(_id)
   },
 
   //
 
   'collections.add.field'(_id, values = {}) {
-    const { _fields } = Collections.findOne(_id)
+    const { _fields } = Features.findOne(_id)
     const fieldId = Random.id()
     _.extend(_fields, {
       [fieldId]: values
     })
     console.log(_fields, fieldId, values)
-    Collections.update(_id, {
+    Features.update(_id, {
       $addToSet: { fields: fieldId },
       $set: { _fields },
     })

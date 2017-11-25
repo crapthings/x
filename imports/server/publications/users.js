@@ -1,25 +1,11 @@
-Meteor.publish(null, function () {
+publish(null, function () {
   const _id = this.userId
-
-  if (_id)
-    return Users.find({ _id }, { fields: { services: false } })
+  return Users.find({ _id }, { fields: { services: false } })
 })
 
-Meteor.publish('login.user', function () {
+publish('login.user', function () {
+  const roles = Roles.find()
+  const features = Features.find()
 
-  if (! Meteor.user()) throw new Meteor.Error()
-
-  const currentUserCursor = Users.find({ _id: Meteor.userId() }, {
-    fields: {
-      services: false
-    }
-  })
-
-  const collectionsCursor = Collections.find()
-
-  return [
-    currentUserCursor,
-    collectionsCursor,
-  ]
-
+  return [roles, features]
 })

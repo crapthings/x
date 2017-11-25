@@ -1,6 +1,3 @@
-Meteor.publish('roles', function () {
-  if (!this.userId)
-    return []
-
+publish('roles', function () {
   return Roles.find()
 })

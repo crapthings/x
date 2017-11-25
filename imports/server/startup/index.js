@@ -1,8 +1,8 @@
 Meteor.startup(function () {
-  Collections.find().observe({
-    added(collection) {
-      if (! Mongo.Collection.get(collection._id))
-        new Mongo.Collection(collection._id)
+  Features.find().observe({
+    added(feature) {
+      if (!Mongo.Collection.get(feature._id))
+        new Mongo.Collection(feature._id)
     }
   })
 })

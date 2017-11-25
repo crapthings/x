@@ -1,3 +1,5 @@
+import { AdminMenu } from './menu'
+
 const Who = ({ currentUser }) => {
   const symbol = _.first(_.toUpper(currentUser.username))
   return <div className='centered pdtb-md'>
@@ -8,45 +10,18 @@ const Who = ({ currentUser }) => {
   </div>
 }
 
-const Menu = ({ currentUser, collections }) => {
-  const { isAdmin } = currentUser
+const Menu = ({ currentUser, roles, features }) => {
+  const { roles: currentRoles } = currentUser
 
-  if (isAdmin)
-    return <ul className='menu'>
-      <li className='menu-item'>
-        <a href='/'>首页</a>
-      </li>
+  console.log(currentRoles, roles)
 
-      <li className='divider' />
+  if (_.intersection(currentRoles, ['system', 'users', 'contents']))
+    return AdminMenu({ currentUser })
 
-      <li className='menu-item'>
-        <a href='/roles'>角色</a>
-      </li>
-
-      <li className='divider' />
-
-      <li className='menu-item'>
-        <a href='/' onClick={() => Meteor.logout()}>注销</a>
-      </li>
-    </ul>
-
-  return <ul className='menu'>
-    <li className='menu-item'>
-      <a href='/'>首页</a>
-    </li>
-    {collections.map(collection => <li className='menu-item'>
-      <a href='/'>{collection.name}</a>
-    </li>)}
-
-    <li className='divider' />
-
-    <li className='menu-item'>
-      <a href='/' onClick={() => Meteor.logout()}>注销</a>
-    </li>
-  </ul>
+  return UserMenu({ currentUser, features })
 }
 
-export default ({ children, currentUser, collections }) => {
+export default ({ currentUser, roles, features, children }) => {
   return <div className='off-canvas'>
     <a className='off-canvas-toggle btn btn-primary btn-action' href='#sidebar-id'>
       <i className='icon icon-menu'></i>
@@ -54,7 +29,7 @@ export default ({ children, currentUser, collections }) => {
 
     <div id='sidebar-id' className='off-canvas-sidebar'>
       <Who currentUser={currentUser} />
-      <Menu currentUser={currentUser} collections={collections} />
+      <Menu currentUser={currentUser} features={features} />
     </div>
 
     <a className='off-canvas-overlay' href='#close'></a>
@@ -72,7 +47,7 @@ export default ({ children, currentUser, collections }) => {
           <a href='#' className='btn btn-link'>GitHub</a>
         </section>
       </header>
-      {children()}
+      {children({ currentUser, roles, features })}
     </div>
   </div>
 }

@@ -37,7 +37,7 @@ class ItemView extends Component {
 }
 
 const tracker = ({ _id }) => {
-  const collection = Collections.findOne(_id)
+  const collection = Features.findOne(_id)
   return { collection }
 }
 

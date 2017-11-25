@@ -1,7 +1,7 @@
 import { withTracker } from 'meteor/react-meteor-data'
 
 const tracker = ({ _id }) => {
-  const collections = Collections.find().fetch()
+  const collections = Features.find().fetch()
   return { collections }
 }
 

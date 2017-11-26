@@ -1,3 +1,3 @@
 import './roles'
 import './users'
-import './collections'
+import './features'

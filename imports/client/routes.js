@@ -9,3 +9,4 @@ import './components/system/route'
 // admin only routes
 
 import './components/roles/route'
+import './components/accounts/route'

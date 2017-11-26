@@ -9,6 +9,7 @@
     "bcrypt": "^1.0.3",
     "faker": "^4.1.0",
     "form2js": "^1.0.0",
+    "is_js": "^0.9.0",
     "lodash": "^4.17.4",
     "meteor-node-stubs": "^0.3.2",
     "moment": "^2.19.2",

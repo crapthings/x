@@ -10,10 +10,8 @@ const Who = ({ currentUser }) => {
   </div>
 }
 
-const Menu = ({ currentUser, roles, features }) => {
+const Menu = ({ currentUser, features }) => {
   const { roles: currentRoles } = currentUser
-
-  console.log(currentRoles, roles)
 
   if (_.intersection(currentRoles, ['system', 'users', 'contents']))
     return AdminMenu({ currentUser })

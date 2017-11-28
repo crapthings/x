@@ -1,5 +1,5 @@
 export default () => {
-  return <div>
+  return <div className='center' id='login-view'>
     <form onSubmit={submit}>
 
       <div className='form-group'>

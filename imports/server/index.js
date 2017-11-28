@@ -1,4 +1,5 @@
 import './config'
+import '../collections'
 import './hooks'
 import './methods'
 import './publications'

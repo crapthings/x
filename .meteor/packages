@@ -16,15 +16,17 @@ standard-minifier-js@2.2.0    # JS minifier run for production mode
 es5-shim@4.6.15                # ECMAScript 5 compatibility for older browsers
 ecmascript@0.9.0              # Enable ECMAScript2015+ syntax in app code
 shell-server@0.3.0            # Server-side component of the `meteor shell` command
-kadira:flow-router
-react-meteor-data
-promise
-reactive-dict
 random
-dburles:mongo-collection-instances
-stylus
-accounts-password
-matb33:collection-hooks
-meteorhacks:unblock
 check
+stylus
+reactive-dict
+accounts-password
+meteorhacks:unblock
+dburles:mongo-collection-instances
+matb33:collection-hooks
+dburles:collection-helpers
+aldeed:collection2-core@2.0.4
 mikowals:batch-insert
+react-meteor-data
+kadira:flow-router
+deanius:promise

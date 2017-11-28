@@ -1,9 +1,8 @@
-import { AdminMenu } from './menu'
+import { AdminMenu, UserMenu } from './menu'
 
 const Who = ({ currentUser }) => {
-  const symbol = _.first(_.toUpper(currentUser.username))
   return <div className='centered pdtb-md'>
-    <figure className='avatar avatar-xl centered' data-initial={symbol}>
+    <figure className='avatar avatar-xl centered' data-initial={currentUser.firstNameLetter()}>
       <img src='img/avatar-1.png' alt=' ' />
       <i className='avatar-presence online'></i>
     </figure>
@@ -11,9 +10,7 @@ const Who = ({ currentUser }) => {
 }
 
 const Menu = ({ currentUser, features }) => {
-  const { roles: currentRoles } = currentUser
-
-  if (_.intersection(currentRoles, ['system', 'users', 'contents']))
+  if (currentUser.inAdminRoles())
     return AdminMenu({ currentUser })
 
   return UserMenu({ currentUser, features })

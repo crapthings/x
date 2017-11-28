@@ -4,5 +4,12 @@ EmptyView = ({ text, children }) => {
   if (children)
     return children()
 
-  return <div>{text || 'empty'}</div>
+  return <div>{text || 'Empty'}</div>
+}
+
+Unauthorized = ({ text, children }) => {
+  if (children)
+    return children()
+
+  return <div>{text || 'Unauthorized'}</div>
 }

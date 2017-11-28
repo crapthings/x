@@ -3,8 +3,8 @@ export const UserMenu = ({ currentUser, features }) => {
     <li className='menu-item'>
       <a href='/'>首页</a>
     </li>
-    {collections.map(collection => <li className='menu-item'>
-      <a href='/'>{collection.name}</a>
+    {features.map(feature => <li className='menu-item'>
+      <a href='/'>{feature.name}</a>
     </li>)}
 
     <li className='divider' />
@@ -37,6 +37,12 @@ export const AdminMenu = ({ currentUser }) => {
 
     <li className='menu-item'>
       <a href='/features'>功能</a>
+    </li>
+
+    <li className='divider' />
+
+    <li className='menu-item'>
+      <a href='/syslogs'>日志</a>
     </li>
 
     <li className='divider' />

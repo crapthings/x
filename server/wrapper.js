@@ -15,11 +15,15 @@ methods = function (methods) {
 
 publish = function (name, func) {
   Meteor.publish(name, function () {
-    if (!this.userId)
-        throw new Meteor.Error('用户未登录')
-
-    this.unblock()
-
-    return func.apply(this, arguments)
+    const self = this
+    try {
+      self.unblock()
+      if (!self.userId)
+          throw new Meteor.Error('用户未登录')
+      return func.apply(self, arguments)
+    } catch (e) {
+      console.log(e)
+      throw e
+    }
   })
 }

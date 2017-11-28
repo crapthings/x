@@ -10,3 +10,5 @@ import './components/system/route'
 
 import './components/roles/route'
 import './components/accounts/route'
+
+import './components/syslogs/route'

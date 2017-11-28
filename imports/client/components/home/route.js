@@ -6,5 +6,7 @@ FlowRouter.route('/', {
     mount(AppView, {
       children: () => <HomeView />
     })
-  }
+  },
+
+  name: 'home',
 })

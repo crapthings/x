@@ -4,7 +4,9 @@ import AccountsView from './'
 FlowRouter.route('/accounts', {
   action() {
     mount(AppView, {
-      children: props => <AccountsView { ...props } />
+      children: props => props.currentUser.inAdminRoles()
+        ? <AccountsView { ...props } />
+        : <Unauthorized />
     })
   }
 })

@@ -3,7 +3,7 @@ const tracker = (props) => {
   if (!ready)
     return { ready }
 
-  const accounts = Users.find({ _id: { $nin: ['system', 'users', 'contents'] } }).fetch()
+  const accounts = Users.find({ roles: { $nin: ['system', 'users', 'contents'] } }).fetch()
   return { ready, accounts }
 }
 
@@ -20,8 +20,8 @@ const component = ({ ready, accounts }) => {
         </tr>
       </thead>
       <tbody>
-        {accounts.map(role => <tr>
-          <td>{role.name}</td>
+        {accounts.map(account => <tr key={account._id}>
+          <td>{account.name}</td>
         </tr>)}
       </tbody>
     </table>

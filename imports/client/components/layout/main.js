@@ -16,15 +16,16 @@ const Menu = ({ currentUser, features }) => {
   return UserMenu({ currentUser, features })
 }
 
-export default ({ currentUser, roles, features, children }) => {
+export default props => {
+  const { children } = props
   return <div className='off-canvas'>
     <a className='off-canvas-toggle btn btn-primary btn-action' href='#sidebar-id'>
       <i className='icon icon-menu'></i>
     </a>
 
     <div id='sidebar-id' className='off-canvas-sidebar'>
-      <Who currentUser={currentUser} />
-      <Menu currentUser={currentUser} features={features} />
+      <Who {...props} />
+      <Menu {...props} />
     </div>
 
     <a className='off-canvas-overlay' href='#close'></a>
@@ -42,7 +43,7 @@ export default ({ currentUser, roles, features, children }) => {
           <a href='#' className='btn btn-link'>GitHub</a>
         </section>
       </header>
-      {children({ currentUser, roles, features })}
+      {children(props)}
     </div>
   </div>
 }

@@ -1,3 +1,4 @@
+import './generic'
 import './config'
 import '../collections'
 import './hooks'

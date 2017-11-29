@@ -17,6 +17,10 @@ const tracker = ({ children }) => {
 
   const currentUser = Meteor.user()
   const roles = Roles.find().fetch()
+
+  const builtInRoles = _.filter(roles, role => _.includes(['system', 'users', 'contents'], role._id))
+  const customRoles = _.reject(roles, role => _.includes(['system', 'users', 'contents'], role._id))
+
   const features = Features.find().fetch()
 
   _.each(features, ({ _id }) => {
@@ -26,14 +30,12 @@ const tracker = ({ children }) => {
 
   return {
     currentUserId, isCurrentUserLoggingIn, ready,
-    currentUser, roles, features, children,
+    currentUser, roles, builtInRoles, customRoles, features, children,
   }
 }
 
-const component = ({
-  currentUserId, isCurrentUserLoggingIn, ready,
-  currentUser, roles, features, children,
-}) => {
+const component = props => {
+  const { currentUserId, isCurrentUserLoggingIn, ready } = props
   if (!currentUserId)
     return <LoginLayout children={LoginView} />
 
@@ -43,12 +45,7 @@ const component = ({
   if (!ready)
     return <LoadingView text='init' />
 
-  return <MainLayout
-    currentUser={currentUser}
-    roles={roles}
-    features={features}
-    children={children}
-  />
+  return <MainLayout {...props} />
 }
 
 export default withTracker(tracker)(component)

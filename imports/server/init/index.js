@@ -31,6 +31,7 @@ function createRolesAndUsers(role) {
   Accounts.createUser({
     username: role._id,
     password: role._id,
+    name: faker.name.findName(),
     roles
   })
 }

@@ -4,12 +4,12 @@ export default () => {
 
       <div className='form-group'>
         <label className='form-label' htmlFor='username'>账号</label>
-        <input className='form-input' type='text' name='username' id='username' placeholder='邮箱账号或用户名' autoComplete='new-password' />
+        <input className='form-input' type='text' name='username' id='username' placeholder='邮箱账号或用户名' autoComplete='new-password' defaultValue='system' />
       </div>
 
       <div className='form-group'>
         <label className='form-label' htmlFor='password'>密码</label>
-        <input className='form-input' type='password' name='password' id='password' placeholder='密码' autoComplete='new-password' />
+        <input className='form-input' type='password' name='password' id='password' placeholder='密码' autoComplete='new-password' defaultValue='system' />
       </div>
 
       <div className='form-group'>

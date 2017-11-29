@@ -30,3 +30,4 @@ mikowals:batch-insert
 react-meteor-data
 kadira:flow-router
 deanius:promise
+aldeed:schema-index

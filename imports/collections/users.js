@@ -13,6 +13,10 @@ Users.attachSchema(new SimpleSchema({
     optional: true,
   },
 
+  name: {
+    type: String,
+  },
+
   roles: {
     type: Array,
   },

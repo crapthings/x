@@ -1,4 +1,4 @@
-export const UserMenu = ({ currentUser, features }) => {
+const UserMenu = ({ currentUser, features }) => {
   return <ul className='menu'>
     <li className='menu-item'>
       <a href='/'>首页</a>
@@ -15,7 +15,7 @@ export const UserMenu = ({ currentUser, features }) => {
   </ul>
 }
 
-export const AdminMenu = ({ currentUser }) => {
+const AdminMenu = ({ currentUser }) => {
   return <ul className='menu'>
     <li className='menu-item'>
       <a href='/'>首页</a>
@@ -51,4 +51,29 @@ export const AdminMenu = ({ currentUser }) => {
       <a href='/' onClick={() => Meteor.logout()}>注销</a>
     </li>
   </ul>
+}
+
+const Who = ({ currentUser }) => {
+  return <div className='centered pdtb-md'>
+    <figure className='avatar avatar-xl centered' data-initial={currentUser.firstNameLetter()}>
+      {currentUser.avatar && <img src={currentUser.avatar} alt='...' />}
+      <i className='avatar-presence online'></i>
+    </figure>
+  </div>
+}
+
+const Menu = ({ currentUser, features }) => {
+  if (currentUser.inAdminRoles())
+    return AdminMenu({ currentUser })
+
+  return UserMenu({ currentUser, features })
+}
+
+export default props => {
+  return (
+    <div id='sidebar-id' className='off-canvas-sidebar'>
+      <Who {...props} />
+      <Menu {...props} />
+    </div>
+  )
 }

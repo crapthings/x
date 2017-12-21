@@ -11,7 +11,7 @@ export default ({ active }) => <div>
       <div className='modal-body'>
         <div className='content'>
           <form className='form-horizontal' onSubmit={submit}>
-            {_.map(schema, (field, fieldName) => <div className='form-group'>
+            {_.map(schema, (field, fieldName) => <div key={fieldName} className='form-group'>
               <div className='col-3'>
                 <label className='form-label' htmlFor='input-example-1'>{field.label}</label>
               </div>
@@ -19,8 +19,8 @@ export default ({ active }) => <div>
                 <input className='form-input' type={field.inputType} name={fieldName} id='input-example-1' placeholder={field.inputPlaceholder || field.label} />
               </div>
             </div>)}
-            <div class="form-group">
-              <button class="btn btn-primary">提交</button>
+            <div className="form-group">
+              <button className="btn btn-primary">提交</button>
             </div>
           </form>
         </div>

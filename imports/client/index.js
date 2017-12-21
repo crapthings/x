@@ -1,3 +1,4 @@
 import '../collections'
-import './routes'
-import './autorun'
+import './components'
+import './domains'
+import './startup'

@@ -1,5 +1,4 @@
-import AppView from '../layout'
-import HomeView from './'
+import HomeView from './view'
 
 FlowRouter.route('/', {
   action() {

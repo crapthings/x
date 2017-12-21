@@ -1,6 +1,5 @@
-import LoginLayout from './login'
-import LoginView from '../login'
-import MainLayout from './main'
+import { MainLayout, LoginLayout } from './layout'
+import LoginView from '../domains/login/view'
 
 const tracker = ({ children }) => {
   const currentUserId = Meteor.userId()
@@ -48,4 +47,4 @@ const component = props => {
   return <MainLayout {...props} />
 }
 
-export default withTracker(tracker)(component)
+module.exports = withTracker(tracker)(component)

@@ -1,5 +1,4 @@
-import AppView from '../layout'
-import AccountsView from './'
+import AccountsView from './view'
 
 FlowRouter.route('/accounts', {
   action() {
